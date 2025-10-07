@@ -1,0 +1,17 @@
+/* Footer Component Styles */
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
