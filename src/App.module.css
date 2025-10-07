@@ -1,0 +1,11 @@
+/* App Component Styles */
+.app {
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.container {
+  max-width: 56rem;
+  margin: 0 auto;
+}
