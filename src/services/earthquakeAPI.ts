@@ -115,7 +115,7 @@ export class EarthquakeAPI {
   static async fetchRecentEarthquakes(
     limit: number = 100,
     minMagnitude: number = 2.5,
-    offset: number = 0
+    offset: number = 1
   ): Promise<EarthquakeFeature[]> {
     const params: EarthquakeAPIParams = {
       starttime: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Last 30 days
@@ -133,7 +133,7 @@ export class EarthquakeAPI {
     startDate: Date,
     endDate: Date,
     limit: number = 100,
-    offset: number = 0
+    offset: number = 1
   ): Promise<EarthquakeFeature[]> {
     const params: EarthquakeAPIParams = {
       starttime: startDate.toISOString().split('T')[0],
