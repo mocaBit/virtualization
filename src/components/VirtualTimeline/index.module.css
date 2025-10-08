@@ -1,0 +1,113 @@
+/* VirtualTimeline Component Styles */
+.timeline {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.header {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.filterBtn {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.filterBtnActive {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.filterBtnInactive {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.filterBtnInactive:hover {
+  background-color: #e5e7eb;
+}
+
+.container {
+  height: 600px;
+  overflow: auto;
+  position: relative;
+}
+
+.spacer {
+  position: relative;
+}
+
+.viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.loadingOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+}
+
+.footer {
+  padding: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.footerFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats {
+  color: #3b82f6;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
