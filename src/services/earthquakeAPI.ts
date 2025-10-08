@@ -50,7 +50,7 @@ export class EarthquakeAPI {
       endtime: new Date().toISOString().split('T')[0],
       minmagnitude: 2.5,
       limit: 100,
-      offset: 0,
+      offset: 1,
       orderby: 'time',
       ...params
     };
