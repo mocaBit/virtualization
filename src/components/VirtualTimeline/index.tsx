@@ -27,7 +27,7 @@ export const VirtualTimeline: React.FC<VirtualTimelineProps> = ({ className = ''
     minMagnitude: 2.5,
     timeRange: 30 // days
   });
-  const [currentOffset, setCurrentOffset] = useState(0);
+  const [currentOffset, setCurrentOffset] = useState(1);
 
   const { containerRef, startIndex, endIndex, offsetY, totalHeight } = useVirtualScroll({
     itemHeight: ITEM_HEIGHT,
@@ -39,16 +39,16 @@ export const VirtualTimeline: React.FC<VirtualTimelineProps> = ({ className = ''
   const loadInitialData = useCallback(async () => {
     try {
       setLoading(prev => ({ ...prev, isLoading: true, error: null }));
-      setCurrentOffset(0);
-      
+      setCurrentOffset(1);
+
       const startDate = new Date();
       startDate.setDate(startDate.getDate() - filters.timeRange);
-      
+
       const data = await EarthquakeAPI.fetchEarthquakesByTimeRange(
         startDate,
         new Date(),
         PAGE_SIZE,
-        0
+        1
       );
       
       const filteredData = data.filter(eq => eq.properties.mag >= filters.minMagnitude);
@@ -122,7 +122,7 @@ export const VirtualTimeline: React.FC<VirtualTimelineProps> = ({ className = ''
 
   const handleMagnitudeFilter = (minMag: number) => {
     setFilters(prev => ({ ...prev, minMagnitude: minMag }));
-    setCurrentOffset(0);
+    setCurrentOffset(1);
     setEarthquakes([]); // Clear current data to trigger reload
   };
 
