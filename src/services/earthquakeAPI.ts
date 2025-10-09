@@ -1,5 +1,4 @@
 import type { EarthquakeResponse, EarthquakeFeature } from '../types/earthquake';
-import { generateMockData } from '../utils/mockData';
 
 const USGS_BASE_URL = 'https://earthquake.usgs.gov/fdsnws/event/1/query';
 
@@ -14,21 +13,6 @@ export interface EarthquakeAPIParams {
 }
 
 export class EarthquakeAPI {
-  private static mockDataCache: EarthquakeFeature[] = [];
-  private static lastMockDataGeneration = 0;
-  
-  private static generateLargeMockDataset(): EarthquakeFeature[] {
-    if (Date.now() - this.lastMockDataGeneration < 60000 && this.mockDataCache.length > 0) {
-      return this.mockDataCache;
-    }
-    
-    // Generate a large dataset for development
-    const largeDataset = generateMockData(2000);
-    this.mockDataCache = largeDataset.features as EarthquakeFeature[];
-    this.lastMockDataGeneration = Date.now();
-    
-    return this.mockDataCache;
-  }
 
   private static buildQueryString(params: EarthquakeAPIParams): string {
     const searchParams = new URLSearchParams({
@@ -73,43 +57,8 @@ export class EarthquakeAPI {
       return data;
     } catch (error) {
       console.error('Error fetching earthquake data:', error);
-      
-      // Enhanced fallback with pagination simulation
-      if (import.meta.env.DEV) {
-        console.warn('Using mock data as fallback with pagination simulation');
-        return this.getMockDataWithPagination(defaultParams);
-      }
-      
       throw error;
     }
-  }
-
-  private static getMockDataWithPagination(params: EarthquakeAPIParams): EarthquakeResponse {
-    const allMockData = this.generateLargeMockDataset();
-    
-    // Apply filters
-    const filteredData = allMockData.filter(eq => {
-      const magnitude = eq.properties.mag;
-      return magnitude >= (params.minmagnitude || 0);
-    });
-    
-    // Apply pagination
-    const offset = params.offset || 0;
-    const limit = params.limit || 100;
-    const paginatedData = filteredData.slice(offset, offset + limit);
-    
-    return {
-      type: "FeatureCollection",
-      metadata: {
-        generated: Date.now(),
-        url: "mock-data-paginated",
-        title: "Mock Earthquake Data with Pagination",
-        status: 200,
-        api: "mock",
-        count: paginatedData.length
-      },
-      features: paginatedData
-    };
   }
 
   static async fetchRecentEarthquakes(
